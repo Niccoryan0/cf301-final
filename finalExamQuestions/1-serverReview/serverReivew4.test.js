@@ -11,7 +11,13 @@ const createServer = () => {
   const express = require('express');
   const app = express();
 
-  // routes go here
+  app.get('/', (req, res) => {
+    res.send().status(200);
+  });
+
+  app.delete('/things/1', (req, res) => {
+    res.status(405).send();
+  });
 
   var server = app.listen(3000, function () {
     var port = server.address().port;

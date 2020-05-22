@@ -16,8 +16,8 @@ const $ = createSnippetWithJQuery(`
 `);
 
 const changeAllClassNames = () => {
-// Solution code here ...
-}
+  $('#fruits').children().addClass('fruit');
+};
 
 describe('Testing challenge', () => {
   test('It should add a class of fruit to all the list items', () => {

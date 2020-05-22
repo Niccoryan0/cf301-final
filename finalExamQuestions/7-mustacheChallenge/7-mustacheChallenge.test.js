@@ -75,12 +75,20 @@ let $ = createSnippetWithJQuery(`
 `);
 
 function Poki(obj){
-// Solution code here ...
+  this.name = obj.name;
+  this.img_url = obj.url;
 }
 
 const templateWithMustache = () => {
-// Solution code here...
-}
+  const result = []
+  let template = $('#template').html();
+  const allPokis = pokimon.results.map(val => new Poki(val));
+  allPokis.forEach(poki => {
+    const html = Mustache.render(template,{name : poki.name, img_url : poki.img_url});
+    result.push(html);
+  });
+  return result;
+};
 
 describe('Testing challenge', () => {
   test('It should return html markup with the character', () => {

@@ -36,8 +36,15 @@ let $ = createSnippetWithJQuery(`
 `);
 
 const templateWithJQuery = () => {
-  // Solution code here...
-}
+  starWarsPeople.forEach((val) => {
+    let template = $('#template').clone();
+    template.attr('id', '');
+    template.find('h2').text(val.name);
+    template.find('h3').text(val.height);
+    template.find('p').text(val.eye_color);
+    $('main').append(template);
+  });
+};
 
 describe('Testing challenge', () => {
   test('It should append the star wars people to the DOM', () => {
