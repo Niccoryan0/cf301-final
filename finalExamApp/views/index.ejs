@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Here's All The Pokemon We've Got!</h1>
+  <ul>
+    <% allPokemon.forEach(pokemon => { %>
+    <form action="/add" method="POST">
+      <h2><%= pokemon.name %></h2>
+      <img src="<%=pokemon.img_url%>" alt="<%=pokemon.name%>">
+      <input type="hidden" name="name" value="<%=pokemon.name%>">
+      <input type="hidden" name="img_url" value="<%=pokemon.img_url%>">
+      <button>Add to Favorites</button>
+    </form>
+    <% }) %>
+
+  </ul>
+</body>
+</html>
