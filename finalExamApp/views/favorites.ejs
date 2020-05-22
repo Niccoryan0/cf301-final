@@ -3,14 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Favorite Pokemon</title>
+  <link rel="stylesheet" href="/styles/styles.css">
+
 </head>
 <body>
-  <h1>Here's All The Pokemon We've Got!</h1>
+  <div>
+    <h1>Here's Your Favorite Pokemon!</h1>
+    <button><a href="/">Back Home</a></button>
+  </div>
+
   <ul>
     <% favPokemon.forEach(pokemon => { %>
-      <li><%=pokemon.name%></li>
-      <li><img src="<%=pokemon.img_url%>" alt=""></li>
+      <li>
+        <p><%=pokemon.name%></p>
+        <img src="<%=pokemon.img_url%>" alt="">
+      </li>
     <% }) %>
 
   </ul>

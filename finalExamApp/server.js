@@ -15,11 +15,14 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.on('error', console.error);
 client.connect();
 // Middleware
-app.use(express.static('./public')); // serves static files from the public folder to make them accessible
-app.use(express.urlencoded({extended: true})); // puts form info into req.body
+app.use(express.static('./public'));
+app.use(express.urlencoded({extended: true}));
 
 function Pokemon(obj){
-  this.name = obj.name.slice(0,1).toUpperCase()+obj.name.slice(1);
+  this.name = obj.name;
+  // this.name = obj.name.slice(0,1).toUpperCase()+obj.name.slice(1);
+  // If only the test allowed the capitalization :(
+
   this.img_url = `https://img.pokemondb.net/artwork/${obj.name}.jpg`;
 }
 
@@ -27,7 +30,6 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon';
-  console.log('hi');
   superagent.get(apiUrl)
     .then(superResult => {
       const pokemonArr = (superResult.body.results.map(poke => new Pokemon(poke)));
@@ -40,7 +42,6 @@ app.post('/add', (req, res) => {
   const pokemonName = req.body.pokemonName;
   const pokemonUrl = req.body.pokemonUrl;
 
-  console.log(pokemonName, pokemonUrl);
   const sqlQuery = 'INSERT INTO pokemon (name, img_url) VALUES ($1, $2)';
   const valArray = [pokemonName, pokemonUrl];
   client.query(sqlQuery, valArray)

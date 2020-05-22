@@ -80,7 +80,7 @@ function Poki(obj){
 }
 
 const templateWithMustache = () => {
-  const result = []
+  const result = [];
   let template = $('#template').html();
   const allPokis = pokimon.results.map(val => new Poki(val));
   allPokis.forEach(poki => {

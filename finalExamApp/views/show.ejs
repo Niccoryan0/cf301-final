@@ -3,19 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pokemon Homepage</title>
+  <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-  <h1>Here's All The Pokemon We've Got!</h1>
+  <div>
+    <h1>Here's All The Pokemon We've Got!</h1>
+    <button><a href="/favorites">View Your Favorites</a></button>
+  </div>
   <ul>
     <% allPokemon.forEach(pokemon => { %>
-    <form action="/add" method="POST">
-      <h2><%= pokemon.name %></h2>
-      <img src="<%=pokemon.img_url%>" alt="<%=pokemon.name%>">
-      <input type="hidden" name="pokemonName" value="<%=pokemon.name%>">
-      <input type="hidden" name="pokemonUrl" value="<%=pokemon.img_url%>">
-      <button>Add to Favorites</button>
-    </form>
+      <li>
+        <form action="/add" method="POST">
+          <h2><%= pokemon.name %></h2>
+          <img src="<%=pokemon.img_url%>" alt="<%=pokemon.name%>">
+          <input type="hidden" name="pokemonName" value="<%=pokemon.name%>">
+          <input type="hidden" name="pokemonUrl" value="<%=pokemon.img_url%>">
+          <button>Add to Favorites</button>
+        </form>
+      </li>
     <% }) %>
 
   </ul>
